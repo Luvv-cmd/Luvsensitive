@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Luvsensitive</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
+        url("background.jpg") center center / cover no-repeat;
+    color: #bbb;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* FADE – ARTIK TIKLAMAYI ENGELLEMİYOR */
+.fade {
+    position: fixed;
+    inset: 0;
+    background: black;
+    animation: fadeOut 3s forwards;
+    z-index: 10;
+    pointer-events: none; /* 🔥 OLAY BU */
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* ANA ALAN */
+.container {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    animation: subtleShake 6s infinite;
+}
+
+h1 {
+    color: #f2f2f2;
+    font-size: 64px;
+    letter-spacing: 8px;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(255,255,255,0.4);
+}
+
+.subtitle {
+    font-size: 12px;
+    letter-spacing: 3px;
+    opacity: 0.7;
+    margin-bottom: 35px;
+}
+
+/* MENÜ */
+.menu a {
+    display: block;
+    margin: 12px 0;
+    padding: 12px 38px;
+    border: 1px solid #333;
+    color: #bbb;
+    text-decoration: none;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background: #fff;
+    color: #000;
+}
+
+.music-btn {
+    margin-top: 30px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #666;
+}
+
+.music-btn:hover {
+    color: #aaa;
+}
+
+/* BIOGRAPHY */
+.bio {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    color: #bbb;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(100%);
+    transition: 0.8s;
+    z-index: 5;
+    padding: 40px;
+}
+
+.bio.active {
+    transform: translateY(0);
+}
+
+.bio p {
+    max-width: 700px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* KAPATMA OKU */
+.close-arrow {
+    margin-top: 40px;
+    font-size: 26px;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.close-arrow:hover {
+    opacity: 1;
+}
+
+/* SİS */
+.fog {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(255,255,255,0.03), transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.02), transparent 45%);
+    animation: fogMove 25s infinite linear;
+    pointer-events: none;
+}
+
+/* ANİMASYONLAR */
+@keyframes subtleShake {
+    50% {
+        transform: translate(0.4px, -0.4px);
+    }
+}
+
+@keyframes fogMove {
+    50% {
+        transform: translateX(-20px);
+    }
+}
+
+footer {
+    position: absolute;
+    bottom: 15px;
+    font-size: 11px;
+    opacity: 0.6;
+    width: 100%;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="fade"></div>
+<div class="fog"></div>
+
+<div class="container">
+    <h1>LUVSENSITIVE</h1>
+    <div class="subtitle">Overdose Cry of Fear</div>
+
+    <div class="menu">
+        <a href="https://steamcommunity.com/id/Aceninhoboss/" target="_blank">STEAM</a>
+        <a href="https://guns.lol/luvsensitive" target="_blank">GUNS</a>
+        <a href="https://open.spotify.com/user/316cnuvjkpjb6sqrv7yk4wgo7c7i" target="_blank">SPOTIFY</a>
+        <a href="https://www.youtube.com/@Aceninhoboss" target="_blank">YOUTUBE</a>
+        <a href="#" onclick="toggleBio()">BIOGRAPHY</a>
+    </div>
+
+    <div class="music-btn" onclick="playMusic()">▶ SOPHIE – Andreas Rönnberg</div>
+</div>
+
+<div class="bio" id="bio">
+<p>
+I enjoy playing psychological horror games like Cry of Fear.<br>
+I can rage sometimes, but I’m easygoing and always down to talk.<br>
+If you’re into dark atmospheres and late-night conversations, we’ll probably get along.<br><br>
+I enjoy watching TV series like <strong>Punisher</strong> and <strong>Breaking Bad</strong>,<br>
+and I’m also a fan of <strong>Harley Quinn</strong> movies.
+</p>
+
+<div class="close-arrow" onclick="toggleBio()">↓</div>
+</div>
+
+<footer>
+Discord : Aceninhoboss
+</footer>
+
+<audio id="music" loop>
+    <source src="sophie.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function playMusic() {
+    const m = document.getElementById("music");
+    m.volume = 0.5;
+    m.play();
+}
+
+function toggleBio() {
+    document.getElementById("bio").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
