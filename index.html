@@ -198,12 +198,42 @@ and even though I'm still a bit new to programming, I'm always trying to learn m
 <div class="close-arrow" onclick="toggleBio()">↓</div>
 </div>
 
-<footer>
+<footer style="margin-top:40px; text-align:center; color:#ccc;">
+
     <p>Discord : <strong>Aceninhoboss</strong></p>
+
     <p style="font-size:12px; color:#888; margin-top:5px;">
         Music belongs to its respective owner. Used for non-commercial fan purposes only.
     </p>
+
+    <div style="margin-top:15px; display:flex; justify-content:center; align-items:center; gap:12px;">
+
+        <div id="visitor-count" style="font-size:13px; letter-spacing:2px; color:#aaa; text-align:left;">
+            PRESENCE DETECTED<br>
+            ACTIVE ENTITY: 001
+        </div>
+
+        <img src="tape.png"
+             style="width:45px; transform:rotate(-15deg); opacity:0.85;">
+    </div>
+
 </footer>
+
+<script>
+if (!localStorage.getItem("visited")) {
+    let count = localStorage.getItem("entityCount");
+    count = count ? parseInt(count) + 1 : 1;
+    localStorage.setItem("entityCount", count);
+    localStorage.setItem("visited", "true");
+}
+
+let displayCount = localStorage.getItem("entityCount") || 1;
+
+document.getElementById("visitor-count").innerHTML =
+"PRESENCE DETECTED<br>ACTIVE ENTITY: " +
+String(displayCount).padStart(3, '0');
+</script>
+
 
 
 <audio id="music" loop>
@@ -224,5 +254,6 @@ function toggleBio() {
 
 </body>
 </html>
+
 
 
